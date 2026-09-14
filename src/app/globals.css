@@ -963,6 +963,108 @@ body {
   gap: var(--space-2);
 }
 
+.safety-acknowledgement {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: 16px;
+  border: 1.5px solid var(--chmsu-green-border);
+  border-radius: var(--radius-md);
+  background: var(--chmsu-green-tint);
+  box-shadow: var(--shadow-card);
+  animation: fadeIn 0.2s var(--ease-calm);
+}
+
+.safety-acknowledgement-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.safety-acknowledgement-kicker {
+  color: var(--chmsu-green);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.safety-acknowledgement h4 {
+  margin-top: 2px;
+  color: var(--chmsu-green-deep);
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+}
+
+.safety-acknowledgement-close {
+  display: inline-flex;
+  padding: 4px;
+  border: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.safety-acknowledgement-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--color-text-secondary);
+  font-size: 0.84rem;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.safety-acknowledgement-label input {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--chmsu-green);
+}
+
+.safety-acknowledgement-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.btn-acknowledgement-cancel,
+.btn-acknowledgement-continue {
+  min-height: 40px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-calm);
+}
+
+.btn-acknowledgement-cancel {
+  border: 1px solid var(--chmsu-green-border);
+  background: var(--color-surface);
+  color: var(--chmsu-green-deep);
+}
+
+.btn-acknowledgement-continue {
+  border: 1px solid var(--chmsu-green);
+  background: var(--chmsu-green);
+  color: #FFFFFF;
+}
+
+.btn-acknowledgement-continue:hover:not(:disabled) {
+  background: var(--chmsu-green-hover);
+  transform: translateY(-1px);
+}
+
+.btn-acknowledgement-continue:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 @media (min-width: 500px) {
   .vent-action-grid {
     grid-template-columns: 1.3fr 1fr 1fr;
