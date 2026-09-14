@@ -9,6 +9,7 @@ export const WelcomeOverlay: React.FC = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(true);
   const [isClosing, setIsClosing] = useState(false);
+  const [termsChecked, setTermsChecked] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -21,6 +22,7 @@ export const WelcomeOverlay: React.FC = () => {
   }, [isOpen]);
 
   const enterPingCheck = () => {
+    if (!termsChecked) return;
     setIsClosing(true);
     window.setTimeout(() => setIsOpen(false), 320);
   };
@@ -29,6 +31,12 @@ export const WelcomeOverlay: React.FC = () => {
     event.preventDefault();
     setIsClosing(true);
     window.setTimeout(() => router.push('/privacy'), 320);
+  };
+
+  const openTerms = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    setIsClosing(true);
+    window.setTimeout(() => router.push('/terms'), 320);
   };
 
   if (!isOpen) return null;
@@ -57,13 +65,25 @@ export const WelcomeOverlay: React.FC = () => {
         <p className="welcome-safety-note">
           Ping Check is not a clinical assessment or emergency service. If you are in immediate danger, please contact emergency responders or open the support resources after entering.
         </p>
-        <button type="button" className="welcome-enter-button" onClick={enterPingCheck} autoFocus>
-          <span>Enter Ping Check</span>
+        <label className="welcome-agreement">
+          <input
+            type="checkbox"
+            checked={termsChecked}
+            onChange={(event) => setTermsChecked(event.target.checked)}
+          />
+          <span>
+            I have read and agree to the <Link href="/terms" onClick={openTerms}>Terms and Conditions</Link> and <Link href="/privacy" onClick={openPrivacy}>Privacy Policy</Link>.
+          </span>
+        </label>
+        <button type="button" className="welcome-enter-button" onClick={enterPingCheck} disabled={!termsChecked} autoFocus>
+          <span>I agree and enter Ping Check</span>
           <ArrowRight size={17} aria-hidden="true" />
         </button>
-        <Link href="/privacy" className="welcome-privacy-link" onClick={openPrivacy}>
-          Read how we handle privacy
-        </Link>
+        <p className="welcome-legal-links">
+          <Link href="/terms" onClick={openTerms}>Terms</Link>
+          <span aria-hidden="true">·</span>
+          <Link href="/privacy" onClick={openPrivacy}>Privacy</Link>
+        </p>
       </div>
     </div>
   );

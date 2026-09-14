@@ -261,6 +261,51 @@ body.welcome-overlay-open {
   box-shadow: 0 8px 18px rgba(21, 115, 62, 0.28);
 }
 
+.welcome-enter-button:disabled {
+  border-color: #B9C9BE;
+  background: #B9C9BE;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.welcome-agreement {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-top: 16px;
+  color: var(--color-text-secondary);
+  font-size: 0.76rem;
+  line-height: 1.45;
+  text-align: left;
+  cursor: pointer;
+}
+
+.welcome-agreement input {
+  flex: 0 0 auto;
+  width: 17px;
+  height: 17px;
+  margin-top: 1px;
+  accent-color: var(--chmsu-green);
+}
+
+.welcome-agreement a,
+.welcome-legal-links a {
+  color: var(--chmsu-green);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.welcome-legal-links {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+}
+
 .welcome-privacy-link {
   display: inline-block;
   margin-top: 13px;
