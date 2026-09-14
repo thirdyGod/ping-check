@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { X, Sparkles, Copy, Send } from 'lucide-react';
 import { MoodKey } from '@/lib/types';
 
@@ -105,11 +106,22 @@ export const VentSpace: React.FC<VentSpaceProps> = ({
       </div>
 
       <h3 className="vent-title">Unburden Your Heart</h3>
-      <p className="vent-subtitle">
-        No one is grading or judging you. Write what made you tired, what hurt today, or what you wish someone understood.
-      </p>
+          <p className="vent-subtitle">
+            No one is grading or judging you. Write what made you tired, what hurt today, or what you wish someone understood.
+          </p>
 
-      {!isSubmitted ? (
+          <div className="vent-safety-notice" role="note">
+            <strong>A gentle safety reminder</strong>
+            <p>
+              Vent Space is for self-reflection, not monitored crisis support. Please don&apos;t include your name, contact details, address, passwords, or other identifying information.
+            </p>
+            <div className="vent-safety-links">
+              <Link href="/privacy">Read the privacy policy</Link>
+              <Link href="/#support-section" onClick={onClose}>Open support resources</Link>
+            </div>
+          </div>
+
+          {!isSubmitted ? (
         <div id="vent-input-wrapper" className="vent-input-wrapper">
           <textarea
             id="vent-textarea"
@@ -127,7 +139,7 @@ export const VentSpace: React.FC<VentSpaceProps> = ({
             <span id="char-counter" className="char-counter">
               {text.length} / 1000
             </span>
-            <span className="confidential-pill">100% Private</span>
+            <span className="confidential-pill">Anonymous by design</span>
           </div>
 
           <div className="vent-action-grid">

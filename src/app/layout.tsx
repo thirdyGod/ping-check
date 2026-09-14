@@ -4,6 +4,7 @@ import './globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { PrivacyFloatingButton } from '@/components/PrivacyFloatingButton';
+import { CrisisSupportButton } from '@/components/CrisisSupportButton';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -62,6 +63,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <PrivacyFloatingButton />
+          <CrisisSupportButton />
         </div>
       </body>
     </html>
