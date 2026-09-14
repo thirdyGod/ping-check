@@ -10,6 +10,7 @@ import { VentSpace } from '@/components/VentSpace';
 import { SupportDrawer } from '@/components/SupportDrawer';
 import { Toast } from '@/components/Toast';
 import { LocalCheckIn, MoodHistory } from '@/components/MoodHistory';
+import { GroundingLibrary } from '@/components/GroundingLibrary';
 
 const defaultQuotes = moodQuotesData as MoodQuotesRegistry;
 const MOOD_HISTORY_STORAGE_KEY = 'ping-check-local-history-v1';
@@ -24,6 +25,7 @@ export default function HomePage() {
   // Quick Tools Visibility
   const [showBreathing, setShowBreathing] = useState<boolean>(false);
   const [showVent, setShowVent] = useState<boolean>(false);
+  const [showGrounding, setShowGrounding] = useState<boolean>(false);
 
   // Toast Notification
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -130,8 +132,10 @@ export default function HomePage() {
           onSelectMood={handleSelectMood}
           onToggleBreathing={() => setShowBreathing((prev) => !prev)}
           onToggleVent={() => setShowVent((prev) => !prev)}
+          onToggleGrounding={() => setShowGrounding((prev) => !prev)}
           breathingActive={showBreathing}
           ventActive={showVent}
+          groundingActive={showGrounding}
         />
       ) : (
         /* View 2: Empathetic Quote & Grounding Card */
@@ -158,6 +162,11 @@ export default function HomePage() {
           onClose={() => setShowVent(false)}
           onShowToast={showToast}
         />
+      )}
+
+      {/* Grounding Exercise Library */}
+      {showGrounding && (
+        <GroundingLibrary onClose={() => setShowGrounding(false)} />
       )}
 
       {/* Campus & Crisis Support Drawer */}

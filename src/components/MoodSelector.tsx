@@ -2,23 +2,27 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Wind, MessageSquareHeart, Info, Lock } from 'lucide-react';
+import { Wind, MessageSquareHeart, Info, Lock, Sparkles } from 'lucide-react';
 import { MoodKey, MoodOption, SUPPORTED_MOODS } from '@/lib/types';
 
 interface MoodSelectorProps {
   onSelectMood: (moodKey: MoodKey, moodLabel: string) => void;
   onToggleBreathing: () => void;
   onToggleVent: () => void;
+  onToggleGrounding: () => void;
   breathingActive: boolean;
   ventActive: boolean;
+  groundingActive: boolean;
 }
 
 export const MoodSelector: React.FC<MoodSelectorProps> = ({
   onSelectMood,
   onToggleBreathing,
   onToggleVent,
+  onToggleGrounding,
   breathingActive,
   ventActive,
+  groundingActive,
 }) => {
   return (
     <section id="mood-view" className="view-section active" aria-labelledby="prompt-heading">
@@ -68,6 +72,18 @@ export const MoodSelector: React.FC<MoodSelectorProps> = ({
         >
           <MessageSquareHeart size={16} aria-hidden="true" />
           <span>Vent &amp; Unburden</span>
+        </button>
+
+        <button
+          id="btn-toggle-grounding"
+          className={`tool-chip ${groundingActive ? 'active' : ''}`}
+          type="button"
+          onClick={onToggleGrounding}
+          aria-expanded={groundingActive}
+          aria-controls="grounding-card"
+        >
+          <Sparkles size={16} aria-hidden="true" />
+          <span>Grounding Tools</span>
         </button>
 
         <Link
