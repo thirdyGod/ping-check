@@ -736,6 +736,106 @@ body.welcome-overlay-open {
   line-height: 1.35;
 }
 
+.mood-history {
+  width: 100%;
+  margin: var(--space-4) auto 0;
+  padding: 13px 15px;
+  border: 1px solid var(--chmsu-green-border);
+  border-radius: var(--radius-md);
+  background: rgba(238, 248, 242, 0.58);
+}
+
+.mood-history-header,
+.mood-history-title-wrap,
+.mood-history-item {
+  display: flex;
+  align-items: center;
+}
+
+.mood-history-header {
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mood-history-title-wrap {
+  gap: 7px;
+  color: var(--chmsu-green-deep);
+}
+
+.mood-history-title-wrap h3 {
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.mood-history-clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+
+.mood-history-clear:hover {
+  color: var(--psits-orange-deep);
+  text-decoration: underline;
+}
+
+.mood-history-note {
+  margin-top: 3px;
+  color: var(--color-text-muted);
+  font-size: 0.68rem;
+}
+
+.mood-history-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.mood-history-item {
+  min-width: 0;
+  gap: 5px;
+  padding: 7px 8px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.72);
+  font-size: 0.7rem;
+}
+
+.mood-history-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--chmsu-green);
+}
+
+.mood-history-dot-tired,
+.mood-history-dot-heavy,
+.mood-history-dot-loss { background: var(--psits-orange); }
+
+.mood-history-label {
+  overflow: hidden;
+  color: var(--chmsu-green-deep);
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mood-history-item time {
+  margin-left: auto;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+@media (max-width: 500px) {
+  .mood-history-list { grid-template-columns: repeat(2, 1fr); }
+}
+
 /* Quick Wellness Tools Bar (Breathing & Venting) */
 .quick-tools-bar {
   display: flex;

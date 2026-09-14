@@ -9,14 +9,17 @@ import { BreathingPacer } from '@/components/BreathingPacer';
 import { VentSpace } from '@/components/VentSpace';
 import { SupportDrawer } from '@/components/SupportDrawer';
 import { Toast } from '@/components/Toast';
+import { LocalCheckIn, MoodHistory } from '@/components/MoodHistory';
 
 const defaultQuotes = moodQuotesData as MoodQuotesRegistry;
+const MOOD_HISTORY_STORAGE_KEY = 'ping-check-local-history-v1';
 
 export default function HomePage() {
   const [quotesRegistry, setQuotesRegistry] = useState<MoodQuotesRegistry>(defaultQuotes);
   const [selectedMood, setSelectedMood] = useState<MoodKey | null>(null);
   const [selectedMoodLabel, setSelectedMoodLabel] = useState<string>('');
   const [quoteData, setQuoteData] = useState<MoodQuote | null>(null);
+  const [moodHistory, setMoodHistory] = useState<LocalCheckIn[]>([]);
 
   // Quick Tools Visibility
   const [showBreathing, setShowBreathing] = useState<boolean>(false);
@@ -50,10 +53,35 @@ export default function HomePage() {
     loadFreshQuotes();
   }, []);
 
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem(MOOD_HISTORY_STORAGE_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored) as LocalCheckIn[];
+        if (Array.isArray(parsed)) setMoodHistory(parsed.slice(0, 7));
+      }
+    } catch {
+      // Local history is optional; a storage error should not affect check-ins.
+    }
+  }, []);
+
+  const saveMoodHistory = useCallback((entries: LocalCheckIn[]) => {
+    setMoodHistory(entries);
+    try {
+      window.localStorage.setItem(MOOD_HISTORY_STORAGE_KEY, JSON.stringify(entries));
+    } catch {
+      // Continue without local persistence when storage is unavailable.
+    }
+  }, []);
+
   const handleSelectMood = useCallback(
     (moodKey: MoodKey, moodLabel: string) => {
       setSelectedMood(moodKey);
       setSelectedMoodLabel(moodLabel);
+      saveMoodHistory([
+        { mood: moodKey, label: moodLabel, createdAt: Date.now() },
+        ...moodHistory,
+      ].slice(0, 7));
 
       const foundQuote = quotesRegistry[moodKey] || defaultQuotes[moodKey];
       setQuoteData(foundQuote);
@@ -78,8 +106,12 @@ export default function HomePage() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     },
-    [quotesRegistry]
+    [moodHistory, quotesRegistry, saveMoodHistory]
   );
+
+  const clearMoodHistory = useCallback(() => {
+    saveMoodHistory([]);
+  }, [saveMoodHistory]);
 
   const handleBackToMoods = useCallback(() => {
     setSelectedMood(null);
@@ -108,6 +140,10 @@ export default function HomePage() {
           quoteData={quoteData}
           onBack={handleBackToMoods}
         />
+      )}
+
+      {!selectedMood && (
+        <MoodHistory entries={moodHistory} onClear={clearMoodHistory} />
       )}
 
       {/* Somatic Breathing Pacer Card */}
