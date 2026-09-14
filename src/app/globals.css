@@ -1344,6 +1344,11 @@ body {
   margin-top: 4px;
 }
 
+.footer-link-separator {
+  color: var(--color-text-muted);
+  margin: 0 8px;
+}
+
 .footer-about-link {
   font-size: 0.85rem;
   font-weight: 600;
@@ -1357,6 +1362,129 @@ body {
 .footer-about-link:hover {
   color: var(--chmsu-green-deep);
   border-bottom-color: var(--chmsu-green);
+}
+
+.privacy-floating-button {
+  position: fixed;
+  right: max(16px, calc((100vw - 580px) / 2 - 76px));
+  bottom: 18px;
+  z-index: 900;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--chmsu-green-border);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--chmsu-green-deep);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--shadow-elevated);
+  backdrop-filter: blur(8px);
+  transition: transform var(--duration-normal) var(--ease-calm), box-shadow var(--duration-normal) var(--ease-calm), border-color var(--duration-normal) var(--ease-calm);
+}
+
+.privacy-floating-button:hover {
+  transform: translateY(-2px);
+  border-color: var(--chmsu-green);
+  box-shadow: 0 14px 30px rgba(21, 115, 62, 0.18);
+}
+
+@media (max-width: 620px) {
+  .privacy-floating-button {
+    right: 14px;
+    bottom: 14px;
+    padding: 11px;
+  }
+
+  .privacy-floating-button span {
+    display: none;
+  }
+}
+
+/* ===================================================================
+   Privacy Policy Page
+   =================================================================== */
+.legal-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.legal-nav {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.legal-card {
+  background-color: var(--color-surface);
+  border: 1.5px solid var(--chmsu-green-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8) var(--space-6);
+  box-shadow: var(--shadow-elevated);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.legal-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.legal-icon {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--chmsu-green);
+  background: var(--chmsu-green-tint);
+  border: 1.5px solid var(--chmsu-green-border);
+}
+
+.legal-title {
+  margin-top: 8px;
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 5vw, 2.5rem);
+  line-height: 1.1;
+  color: var(--chmsu-green-deep);
+}
+
+.legal-updated {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+}
+
+.legal-card h2 {
+  margin-top: var(--space-3);
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--chmsu-green-deep);
+}
+
+.legal-card p {
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+.legal-note {
+  padding: var(--space-4);
+  border-left: 3px solid var(--psits-orange);
+  background: var(--psits-orange-tint);
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+}
+
+@media (min-width: 500px) {
+  .legal-card {
+    padding: var(--space-8);
+  }
 }
 
 /* ===================================================================

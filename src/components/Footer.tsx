@@ -31,6 +31,10 @@ export const Footer: React.FC = () => {
         <Link href="/about" className="footer-about-link">
           Meet the Working Committees &amp; Project Story →
         </Link>
+        <span className="footer-link-separator" aria-hidden="true">·</span>
+        <Link href="/privacy" className="footer-about-link">
+          Privacy Policy
+        </Link>
       </p>
       <p className="footer-subnote">
         Ping Check is an anonymous self-reflection tool. It is not a clinical assessment. In an emergency, please contact local emergency responders.
