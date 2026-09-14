@@ -4,40 +4,38 @@ import Link from 'next/link';
 export const Footer: React.FC = () => {
   return (
     <footer className="app-footer" role="contentinfo">
-      <div className="footer-partnership">
-        <span className="partner-lead">An initiative by</span>
+      <div className="footer-minimal-brand">
+        <span className="footer-brand-name">Ping Check</span>
+        <span className="footer-link-separator" aria-hidden="true">·</span>
         <a
           href="https://www.facebook.com/profile.php?id=61579591881440"
           target="_blank"
           rel="noopener noreferrer"
-          className="footer-psits-link"
+          className="footer-minimal-link"
           title="Visit CHMSU PSITS on Facebook"
         >
-          <strong>Philippine Society of Information Technology Students (PSITS)</strong>
+          CHMSU PSITS
         </a>
-        <span className="partner-sub">in proud partnership with</span>
+        <span className="footer-link-separator" aria-hidden="true">×</span>
         <a
           href="https://www.facebook.com/CHMSCPsychologicalSociety"
           target="_blank"
           rel="noopener noreferrer"
-          className="footer-partner-link"
+          className="footer-minimal-link footer-psych-link"
           title="Visit CHMSU Psychological Society on Facebook"
         >
-          <strong className="partner-highlight">The CHMSU Psychological Society (Estd. 2016)</strong>
+          Psychological Society
         </a>
       </div>
-      <p className="footer-campus">Carlos Hilado Memorial State University • Main Campus (Talisay City)</p>
-      <p className="footer-about">
-        <Link href="/about" className="footer-about-link">
-          Meet the Working Committees &amp; Project Story →
-        </Link>
+      <div className="footer-minimal-meta">
+        <span>CHMSU Main Campus · Talisay City</span>
         <span className="footer-link-separator" aria-hidden="true">·</span>
-        <Link href="/privacy" className="footer-about-link">
-          Privacy Policy
-        </Link>
-      </p>
+        <Link href="/about" className="footer-minimal-link">About</Link>
+        <span className="footer-link-separator" aria-hidden="true">·</span>
+        <Link href="/privacy" className="footer-minimal-link">Privacy</Link>
+      </div>
       <p className="footer-subnote">
-        Ping Check is an anonymous self-reflection tool. It is not a clinical assessment. In an emergency, please contact local emergency responders.
+        Anonymous self-reflection tool · Not a clinical or emergency service
       </p>
     </footer>
   );

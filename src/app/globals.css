@@ -1674,83 +1674,58 @@ body.welcome-overlay-open {
    =================================================================== */
 .app-footer {
   text-align: center;
-  padding-top: var(--space-5);
-  border-top: 1.5px solid var(--chmsu-green-border);
+  padding: 18px 0 8px;
+  border-top: 1px solid var(--chmsu-green-border);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
-.footer-partnership {
-  font-size: 0.88rem;
-  line-height: 1.5;
-  color: var(--color-text-secondary);
+.footer-minimal-brand,
+.footer-minimal-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
 }
 
-.footer-partnership strong {
+.footer-brand-name {
   color: var(--chmsu-green-deep);
+  font-family: var(--font-serif);
+  font-size: 0.94rem;
+  font-weight: 700;
 }
 
-.footer-psits-link {
+.footer-minimal-link {
+  color: var(--chmsu-green);
   text-decoration: none;
-  display: inline-block;
-  transition: transform var(--duration-normal) var(--ease-calm);
+  font-weight: 650;
+  transition: color var(--duration-normal) var(--ease-calm);
 }
 
-.footer-psits-link:hover strong {
+.footer-minimal-link:hover {
   color: var(--chmsu-green);
   text-decoration: underline;
 }
 
-.partner-lead, .partner-sub {
-  color: var(--color-text-muted);
-  font-size: 0.82rem;
-  display: block;
-}
-
-.footer-partnership .partner-highlight {
-  color: #6C3586;
-  font-weight: 700;
-}
-
-.footer-campus {
-  font-family: var(--font-mono);
-  font-size: 0.76rem;
-  color: var(--chmsu-green);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 600;
-}
-
 .footer-subnote {
-  font-size: 0.74rem;
   color: var(--color-text-muted);
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-.footer-about {
-  margin-top: 4px;
+  font-size: 0.68rem;
+  margin: 2px auto 0;
 }
 
 .footer-link-separator {
   color: var(--color-text-muted);
-  margin: 0 8px;
+  margin: 0 2px;
 }
 
-.footer-about-link {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--chmsu-green);
-  text-decoration: none;
-  border-bottom: 1.5px solid var(--chmsu-green-border);
-  padding-bottom: 2px;
-  transition: all var(--duration-normal) var(--ease-calm);
-}
-
-.footer-about-link:hover {
-  color: var(--chmsu-green-deep);
-  border-bottom-color: var(--chmsu-green);
+@media (max-width: 500px) {
+  .app-footer { padding-top: 15px; }
+  .footer-minimal-meta { line-height: 1.6; }
+  .footer-subnote { max-width: 290px; line-height: 1.4; }
 }
 
 .privacy-floating-button {
