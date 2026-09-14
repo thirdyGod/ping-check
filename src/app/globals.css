@@ -325,6 +325,30 @@ body {
   animation: floatIn 0.55s var(--ease-calm);
 }
 
+@media (min-width: 900px) {
+  .connection-prompt-float {
+    position: fixed;
+    top: 180px;
+    right: 24px;
+    z-index: 800;
+    width: 286px;
+    margin: 0;
+    padding: 18px;
+    text-align: left;
+  }
+
+  .connection-prompt-float::before {
+    left: 16px;
+    right: 16px;
+  }
+
+  .connection-prompt-support,
+  .connection-prompt-instruction {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 .connection-prompt-float::before {
   content: '';
   position: absolute;
