@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowRight, Heart, ShieldCheck } from 'lucide-react';
 
 export const WelcomeOverlay: React.FC = () => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(true);
   const [isClosing, setIsClosing] = useState(false);
 
@@ -21,6 +23,12 @@ export const WelcomeOverlay: React.FC = () => {
   const enterPingCheck = () => {
     setIsClosing(true);
     window.setTimeout(() => setIsOpen(false), 320);
+  };
+
+  const openPrivacy = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    setIsClosing(true);
+    window.setTimeout(() => router.push('/privacy'), 320);
   };
 
   if (!isOpen) return null;
@@ -53,7 +61,7 @@ export const WelcomeOverlay: React.FC = () => {
           <span>Enter Ping Check</span>
           <ArrowRight size={17} aria-hidden="true" />
         </button>
-        <Link href="/privacy" className="welcome-privacy-link">
+        <Link href="/privacy" className="welcome-privacy-link" onClick={openPrivacy}>
           Read how we handle privacy
         </Link>
       </div>
