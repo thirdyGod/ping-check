@@ -6,6 +6,7 @@ import { ArrowRight, Heart, ShieldCheck } from 'lucide-react';
 
 export const WelcomeOverlay: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
+  const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -17,12 +18,15 @@ export const WelcomeOverlay: React.FC = () => {
     return () => document.body.classList.remove('welcome-overlay-open');
   }, [isOpen]);
 
-  const enterPingCheck = () => setIsOpen(false);
+  const enterPingCheck = () => {
+    setIsClosing(true);
+    window.setTimeout(() => setIsOpen(false), 320);
+  };
 
   if (!isOpen) return null;
 
   return (
-    <div className="welcome-overlay" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+    <div className={`welcome-overlay ${isClosing ? 'is-closing' : ''}`} role="dialog" aria-modal="true" aria-labelledby="welcome-title">
       <div className="welcome-window">
         <div className="welcome-window-icon" aria-hidden="true">
           <Heart size={25} />
