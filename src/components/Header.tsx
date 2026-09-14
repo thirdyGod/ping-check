@@ -53,7 +53,14 @@ export const Header: React.FC = () => {
       </div>
 
       <h1 className="app-title">Ping Check</h1>
-      <p className="app-subtitle">How’s your connection with yourself today?</p>
+      <div className="connection-prompt-float" role="note" aria-label="Self-connection check-in prompt">
+        <span className="connection-prompt-label">A gentle check-in</span>
+        <p className="connection-prompt-question">How&apos;s your connection with yourself today?</p>
+        <p className="connection-prompt-support">
+          Pause for a moment. Notice what feels present—there&apos;s no right answer and no need to explain.
+        </p>
+        <p className="connection-prompt-instruction">Choose the word that feels closest to what you&apos;re holding.</p>
+      </div>
       <p className="partnership-tagline">
         An initiative in partnership with{' '}
         <a
