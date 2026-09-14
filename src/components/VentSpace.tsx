@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { X, Sparkles, Copy, Send } from 'lucide-react';
+import { X, Sparkles, Copy, Send, RefreshCw, Lightbulb } from 'lucide-react';
 import { MoodKey } from '@/lib/types';
 
 interface VentSpaceProps {
@@ -13,6 +13,12 @@ interface VentSpaceProps {
 
 const SAFETY_NOTICE_VERSION = 'v1';
 const SAFETY_NOTICE_STORAGE_KEY = `ping-check-safety-notice-${SAFETY_NOTICE_VERSION}`;
+const REFLECTION_PROMPTS = [
+  'What has been taking up space in your mind today?',
+  'What do you need more of right now: rest, support, clarity, or something else?',
+  'What is one small thing that helped you get through today?',
+  'If your feelings could speak gently, what might they want you to notice?',
+];
 
 export const VentSpace: React.FC<VentSpaceProps> = ({
   selectedMood,
@@ -26,6 +32,8 @@ export const VentSpace: React.FC<VentSpaceProps> = ({
   const [hasAcknowledgedSafety, setHasAcknowledgedSafety] = useState<boolean>(false);
   const [showSafetyAcknowledgement, setShowSafetyAcknowledgement] = useState<boolean>(false);
   const [acknowledgementChecked, setAcknowledgementChecked] = useState<boolean>(false);
+  const [showPrompt, setShowPrompt] = useState<boolean>(false);
+  const [promptIndex, setPromptIndex] = useState<number>(0);
 
   useEffect(() => {
     try {
@@ -126,6 +134,12 @@ export const VentSpace: React.FC<VentSpaceProps> = ({
   const handleReset = () => {
     setIsSubmitted(false);
     setText('');
+    setShowPrompt(false);
+  };
+
+  const showNextPrompt = () => {
+    setPromptIndex((current) => (current + 1) % REFLECTION_PROMPTS.length);
+    setShowPrompt(true);
   };
 
   return (
@@ -165,6 +179,36 @@ export const VentSpace: React.FC<VentSpaceProps> = ({
 
       {!isSubmitted ? (
         <div id="vent-input-wrapper" className="vent-input-wrapper">
+          <div className="reflection-prompt-tools">
+            <button
+              type="button"
+              className="reflection-prompt-toggle"
+              onClick={() => setShowPrompt((visible) => !visible)}
+              aria-expanded={showPrompt}
+              aria-controls="reflection-prompt-panel"
+              disabled={isDissolving || isSending}
+            >
+              <Lightbulb size={15} aria-hidden="true" />
+              <span>{showPrompt ? 'Hide writing prompt' : 'Need a gentle prompt?'}</span>
+            </button>
+          </div>
+
+          {showPrompt && (
+            <div id="reflection-prompt-panel" className="reflection-prompt-panel" role="note">
+              <span className="reflection-prompt-label">A thought to begin with</span>
+              <p>&ldquo;{REFLECTION_PROMPTS[promptIndex]}&rdquo;</p>
+              <div className="reflection-prompt-actions">
+                <button type="button" onClick={showNextPrompt} disabled={isDissolving || isSending}>
+                  <RefreshCw size={14} aria-hidden="true" />
+                  Try another
+                </button>
+                <button type="button" onClick={() => setShowPrompt(false)}>
+                  Not right now
+                </button>
+              </div>
+            </div>
+          )}
+
           <textarea
             id="vent-textarea"
             className={`vent-textarea ${isDissolving ? 'dissolving' : ''}`}

@@ -1195,6 +1195,76 @@ body.welcome-overlay-open {
   transition: all var(--duration-normal) var(--ease-calm);
 }
 
+.reflection-prompt-tools {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.reflection-prompt-toggle,
+.reflection-prompt-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+  color: var(--chmsu-green-deep);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.reflection-prompt-toggle {
+  padding: 4px 0;
+}
+
+.reflection-prompt-toggle:hover,
+.reflection-prompt-actions button:hover {
+  color: var(--psits-orange-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.reflection-prompt-toggle:disabled,
+.reflection-prompt-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.reflection-prompt-panel {
+  padding: 14px 16px;
+  border: 1px solid var(--chmsu-green-border);
+  border-left: 3px solid var(--psits-orange);
+  border-radius: var(--radius-md);
+  background: var(--chmsu-green-tint);
+  animation: fadeIn 0.2s var(--ease-calm);
+}
+
+.reflection-prompt-label {
+  color: var(--psits-orange-deep);
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.reflection-prompt-panel p {
+  margin-top: 5px;
+  color: var(--chmsu-green-deep);
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.reflection-prompt-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+
 .vent-textarea {
   width: 100%;
   border: 1.5px solid var(--chmsu-green-border);
