@@ -10,7 +10,8 @@ interface BreathingPacerProps {
 type Phase = 'inhale' | 'hold' | 'exhale';
 
 export const BreathingPacer: React.FC<BreathingPacerProps> = ({ onClose }) => {
-  const [isActive, setIsActive] = useState<boolean>(true);
+  const [isActive, setIsActive] = useState<boolean>(false);
+  const [hasStarted, setHasStarted] = useState<boolean>(false);
   const [phase, setPhase] = useState<Phase>('inhale');
   const [secondsLeft, setSecondsLeft] = useState<number>(4);
 
@@ -49,7 +50,17 @@ export const BreathingPacer: React.FC<BreathingPacerProps> = ({ onClose }) => {
     return () => clearInterval(timer);
   }, [isActive]);
 
+  const startExercise = () => {
+    setHasStarted(true);
+    setIsActive(true);
+  };
+
   const toggleExercise = () => {
+    if (!hasStarted) {
+      startExercise();
+      return;
+    }
+
     setIsActive((prev) => !prev);
   };
 
@@ -112,7 +123,7 @@ export const BreathingPacer: React.FC<BreathingPacerProps> = ({ onClose }) => {
           type="button"
           onClick={toggleExercise}
         >
-          {isActive ? 'Pause Exercise' : 'Resume Exercise'}
+          {!hasStarted ? 'Start Exercise' : isActive ? 'Pause Exercise' : 'Resume Exercise'}
         </button>
       </div>
     </section>
